@@ -1,0 +1,45 @@
+{
+    "blocks": [
+      {
+        "label": "Подключение",
+        "fields": [
+          {
+            "type": "text",
+            "model": "name",
+            "label": "Название",
+            "default": "localhost",
+            "description": "Название соединение "
+          },
+          {
+            "type": "text",
+            "model": "address",
+            "label": "Адрес",
+            "default": "ws://127.0.0.1:4044/",
+            "description": "Адрес WebSocket сервера VRack2"
+          },
+          {
+            "type": "text",
+            "model": "secret",
+            "label": "Секретный ключ",
+            "default": "default",
+            "description": "Секретный ключ доступа VRack2"
+          },
+          {
+            "type": "text",
+            "model": "private",
+            "label": "Приватный ключ",
+            "default": "",
+            "description": "Приватный ключ шифрования"
+          },
+          {
+            "type": "textarea",
+            "model": "description",
+            "label": "Описание",
+            "default": "",
+            "description": "Дополнительное описание подключения"
+          }
+
+        ]
+      }
+    ]
+  }

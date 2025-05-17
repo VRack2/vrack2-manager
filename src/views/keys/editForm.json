@@ -1,0 +1,23 @@
+{
+    "blocks": [
+      {
+        "label": "Подключение",
+        "fields": [
+          {
+            "type": "text",
+            "model": "name",
+            "label": "Название",
+            "default": "MyKey1",
+            "description": "Ключа"
+          },
+          {
+            "type": "textarea",
+            "model": "description",
+            "label": "Описание",
+            "default": "",
+            "description": "Дополнительное описание ключа"
+          }
+        ]
+      }
+    ]
+  }

@@ -1,0 +1,38 @@
+{
+    "blocks": [
+      {
+        "label": "Подключение",
+        "fields": [
+          {
+            "type": "text",
+            "model": "name",
+            "label": "Название",
+            "default": "MyKey1",
+            "description": "Ключа"
+          },
+          {
+            "type": "textarea",
+            "model": "description",
+            "label": "Описание",
+            "default": "",
+            "description": "Дополнительное описание ключа"
+          },
+          {
+            "type": "select",
+            "model": "level",
+            "label": "Уровень",
+            "default": 1,
+            "options": {"1": "1 - Администраторский", "2": "2 - Операторский", "3": "3 - Диспетчерский"},
+            "description": "Уровень доступа для данного ключа"
+          },
+          {
+            "type": "checkbox",
+            "model": "cipher",
+            "label": "Шифрование",
+            "default": false,
+            "description": "Использование шифрование добавляет создание приватного ключа"
+          }
+        ]
+      }
+    ]
+  }

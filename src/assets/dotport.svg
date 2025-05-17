@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="32"
+   height="32"
+   viewBox="0 0 8.4666664 8.4666667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a84865, 2022-12-01)"
+   sodipodi:docname="dot port.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs2" />
+  <g
+     inkscape:label="Слой 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <circle
+       style="fill:#878278;stroke:#ffffff;stroke-width:0;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke;fill-opacity:1"
+       id="path238"
+       cx="4.2333331"
+       cy="4.2333331"
+       r="4.2333331" />
+    <ellipse
+       style="fill:#000000;stroke:#ffffff;stroke-width:0;stroke-linejoin:round;stroke-dasharray:none;paint-order:fill markers stroke"
+       id="path238-2"
+       cx="4.2333331"
+       cy="4.2333331"
+       rx="2.6458335"
+       ry="2.7093127" />
+  </g>
+</svg>
