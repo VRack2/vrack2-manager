@@ -1,5 +1,7 @@
 <template>
-    <b>{{ name }}</b> <small>[{{ metric.interval }}]</small> ({{ metric.retentions }}) time:<i>{{ metric.tType }}</i>  value:<i>{{ metric.vType }}</i> <template v-if="metric.description"> - {{ metric.description }}</template>
+    <div>
+        <b>{{ name }}</b> <small>[{{ metric.interval }}]</small> ({{ metric.retentions }}) time:<i>{{ metric.tType }}</i>  value:<i>{{ metric.vType }}</i> <template v-if="metric.description"> - {{ metric.description }}</template>
+    </div>
 </template>
 <script>
 import dots from "@/assets/standart.svg"
