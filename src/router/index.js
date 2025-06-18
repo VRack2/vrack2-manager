@@ -24,6 +24,7 @@ import MetricsView from '@/views/manager/device/MetricsView.vue'
 import ActionsView from '@/views/manager/device/ActionsView.vue'
 import ChannelsView from '@/views/manager/device/ChannelsView.vue'
 import ServiceApiView from '@/views/manager/ServiceApiView.vue'
+import DevicePorts from '@/views/manager/device/DevicePorts.vue'
 
 const routes = [
   {
@@ -102,6 +103,11 @@ const routes = [
                     path: 'devicechannels',
                     name: 'deviceChannels',
                     component: ChannelsView,  
+                  },
+                  { 
+                    path: 'deviceports',
+                    name: 'devicePorts',
+                    component: DevicePorts,  
                   },
                   { 
                     path: 'deviceactions',

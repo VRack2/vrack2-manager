@@ -49,4 +49,10 @@ html {
   cursor: pointer;
   text-decoration:underline;
 }
+
+.console-pre {
+  background-color: rgb(24, 24, 24);
+  border-radius: 0.375rem;
+  padding: 4px;
+}
 </style>

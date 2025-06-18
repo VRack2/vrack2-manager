@@ -12,6 +12,7 @@
     "@svgdotjs/svg.draggable.js": "^3.0.2",
     "@svgdotjs/svg.js": "^3.0.16",
     "@svgdotjs/svg.panzoom.js": "^2.1.1",
+    "ansi-to-html": "^0.7.2",
     "bootstrap": "^5.3.3",
     "bootstrap-icons": "^1.11.3",
     "core-js": "^3.8.3",

@@ -32,7 +32,8 @@
                 </div>
             </div>
         </div>
-        <span :class="{'loader-progress-animation': flagPlay}" class="loader-progress"></span>
+        <LoaderProgress :animated="flagPlay"></LoaderProgress>
+        <!-- <span :class="{'loader-progress-animation': flagPlay}" class="loader-progress"></span> -->
         <ul class="list-group list-group-flush">            
             <EventWidget v-for="event of messages" :flagCollaps="flagCollaps" :flagExpand="flagExpand" :flagFullInfo="flagFullInfo" :key="event.id" :event="event"></EventWidget>
         </ul>
@@ -45,12 +46,13 @@
 <script>
 import { inject, provide, ref, watch } from 'vue';
 import EventWidget from './EventWidget.vue';
+import LoaderProgress from '@/components/LoaderProgress.vue';
 
 
 export default {
     name: 'EventsWidget',
     props: ['service', 'device'],
-    components: { EventWidget },
+    components: { EventWidget, LoaderProgress },
     setup() {
         const Subscribes = inject('Subscribes')
         const flagPlay = ref(true)

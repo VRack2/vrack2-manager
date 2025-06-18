@@ -9,8 +9,10 @@
       <li class="nav-item">
         <router-link :to="{ name: 'deviceGeneralInfo' }" class="nav-link" active-class="active">Информация</router-link>
       </li>
+      <li class="nav-item" v-if="remote.level === 1">
+        <router-link :to="{ name: 'devicePorts' }" class="nav-link" active-class="active">Порты</router-link>
+      </li>
       <li class="nav-item">
-        <!-- <a class="nav-link" href="#">События & Данные</a> -->
         <router-link :to="{ name: 'deviceChannels' }" class="nav-link" active-class="active">События & Данные</router-link>
       </li>
       <li class="nav-item"  v-if="Object.keys(device.actions).length">

@@ -17,16 +17,19 @@
                 <div v-if="!Subscribes.registered.length"><EmptyChannelsView></EmptyChannelsView></div>
             </div>
             <div class="col-xl-6 h100" style="background-color: #212529;">
-                <ul class="nav mt-2 nav-underline nav-fill" v-if="ConsoleWidgets.actionsList.length || ConsoleWidgets.metricList.length">
+                <ul class="nav mt-2 nav-underline nav-fill" v-if="isWidgetsActive()">
                     <li class="nav-item" @click="rightTab = 'ActionsView'">
                         <span :class="{ 'active': (rightTab === 'ActionsView')} " class="nav-link nav-link-display border-bottom">Экшены ({{ ConsoleWidgets.actionsList.length }})</span>
                     </li>
                     <li class="nav-item" @click="rightTab = 'MetricsView'">
                         <span :class="{ 'active': (rightTab === 'MetricsView')} " class="border-bottom nav-link nav-link-display">Метрики ({{ ConsoleWidgets.metricList.length }})</span>
                     </li>
+                    <li class="nav-item" @click="rightTab = 'PortsView'">
+                        <span :class="{ 'active': (rightTab === 'PortsView')} " class="border-bottom nav-link nav-link-display">Порты ({{ ConsoleWidgets.portList.length }})</span>
+                    </li>
                 </ul>
-                <div v-if="ConsoleWidgets.actionsList.length || ConsoleWidgets.metricList.length"><component :is="rightTab"></component></div>
-                <div v-if="!ConsoleWidgets.actionsList.length && !ConsoleWidgets.metricList.length"><EmptyWidgetsView></EmptyWidgetsView></div>
+                <div v-if="isWidgetsActive()"><KeepAlive><component :is="rightTab"></component></KeepAlive></div>
+                <div v-if="!isWidgetsActive()"><EmptyWidgetsView></EmptyWidgetsView></div>
             </div>
         </div>
     </div>
@@ -43,6 +46,7 @@ import EmptyWidgetsView from './console/EmptyWidgetsView.vue';
 import ActionsView from './console/ActionsView.vue';
 import { MetricsControl } from '@/classes/Metrics'
 import MetricsView from './console/MetricsView.vue';
+import PortsView from './console/PortsView.vue';
 
 export default {
     name: 'ConsoleView',
@@ -53,7 +57,8 @@ export default {
         EmptyChannelsView, 
         EmptyWidgetsView,
         ActionsView,
-        MetricsView
+        MetricsView,
+        PortsView
     },
     setup() {
         const Subscribes = inject('Subscribes')
@@ -81,9 +86,15 @@ export default {
             this.flagEvent = true
             setTimeout(()=>{ this.flagEvent = false }, 200)
         })
+    },
+
+    methods: {
+        isWidgetsActive(){
+            return (this.ConsoleWidgets.actionsList.length ||
+            this.ConsoleWidgets.metricList.length ||
+            this.ConsoleWidgets.portList.length)
+        }
     }
-
-
   }
   </script>
 
