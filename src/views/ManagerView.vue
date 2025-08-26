@@ -16,7 +16,7 @@
       <!-- LEFT PANEL -->
        <SideNavigationWidget v-if="ready"></SideNavigationWidget>
        <hr class="m-2">
-      <services-widget :services="services" :servicesTree="servicesTree"></services-widget>
+      <services-widget :services="services" :servicesTree="servicesTree" :servicesReload="serviceListUpdate"></services-widget>
     </div>
     <div class="col overy p-0 d-flex" style="height: 100%">
       <router-view v-if="ready" />

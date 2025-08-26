@@ -1,6 +1,11 @@
 <template>
 
-  <PanelHeader><i class="bi bi-hdd-rack-fill"></i> Сервисы</PanelHeader>
+  <div class="p-3" style="font-weight: bold;"><img v-if="img" :src="img" width="60"> 
+      <div class="d-flex justify-content-between align-items-center">
+      <div><i class="bi bi-hdd-rack-fill"></i> Сервисы</div><button type="button" @click="servicesReload()" class="btn btn-dark btn-sm"><i class="bi bi-arrow-repeat"></i></button>
+    </div>
+  </div>
+
   <PanelNav>
     <template v-for="group in servicesTree" v-bind:key="group.name">
       <PanelNavGroup>{{ group.group }}</PanelNavGroup>
@@ -21,7 +26,7 @@
 </template>
 
 <script>
-import PanelHeader from '@/components/SidePanel/PanelHeader.vue';
+// import PanelHeader from '@/components/SidePanel/PanelHeader.vue';
 import PanelNav from '@/components/SidePanel/PanelNav.vue';
 import PanelNavElement from '@/components/SidePanel/PanelNavElement.vue';
 import PanelNavGroup from '@/components/SidePanel/PanelNavGroup.vue';
@@ -31,14 +36,14 @@ import ServiceGear from '@/components/SidePanel/Services/ServiceGear.vue';
 export default {
   name: 'ServicesWidget',
   components: {
-    PanelHeader,
+    // PanelHeader,
     PanelNav,
     PanelNavGroup,
     PanelNavElement,
     ServiceGear,
     PanelNavList
   },
-  props: ['services', 'servicesTree']
+  props: ['services', 'servicesTree', 'servicesReload']
 }
 </script>
 
