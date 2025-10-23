@@ -1,5 +1,5 @@
 <template>
-    <div v-if="typeof data === 'object'">
+    <div v-if="typeof data === 'object' && data !== null">
         <span class="data-key" @click="show = !show ">
             <i v-if="!show" class="bi bi-chevron-right me-1"></i>
             <i v-if="show" class="bi bi-chevron-down me-1"></i>
@@ -19,6 +19,7 @@
     <div v-if="typeof data === 'boolean'">{{ field }}: <span style="color:#c40065">{{ data }}</span></div>
     <!-- undefined -->
     <div v-if="typeof data === 'undefined'">{{ field }}: <span style="color:#c13838">undefined</span></div>
+    <div v-if="typeof data === 'object' && data === null">{{ field }}: <span style="color:#c13838">null</span></div>
 
     <!-- <pre class="">{{ data }}</pre> -->
 </template>
@@ -27,7 +28,7 @@
 export default {
     props: ['root','field','data', 'expand'],
     mounted (){
-        if (typeof this.data ==='object' && Object.keys(this.data).length < 10){
+        if (this.data !== null && typeof this.data ==='object' && Object.keys(this.data).length < 10){
             this.show=true
         }
         if (this.root) this.show = true

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="typeof data === 'object'">
+    <div v-if="typeof data === 'object' && data !== null">
         <span class="ob-key">
              <span v-if="!root">{{ field }}:&nbsp;</span>{
         </span>
@@ -18,13 +18,14 @@
     <div v-if="typeof data === 'boolean'">{{ field }}: <span style="color:#c40065">{{ data }}</span></div>
     <!-- undefined -->
     <div v-if="typeof data === 'undefined'">{{ field }}: <span style="color:#c13838">undefined</span></div>
+    <div v-if="typeof data === 'object' && data === null">{{ field }}: <span style="color:#c13838">null</span></div>
 </template>
       
 <script>
 export default {
     props: ['root','field','data'],
     mounted (){
-        if (typeof this.data ==='object' && Object.keys(this.data).length < 10){
+        if (typeof this.data ==='object' && this.data !== null && Object.keys(this.data).length < 10){
             this.show=true
         }
 
