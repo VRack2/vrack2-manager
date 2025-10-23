@@ -8,7 +8,7 @@
         <PanelNavList>
             <!-- {{ $route.path }} -->
             <PanelNavElement :active="$route.name === 'manager'" :event="() => { $router.push({name: 'manager', params: {id: $route.params.id } }) }">
-                <i class="bi bi-box-fill"></i><span class="ps-2">Сервис</span>
+                <i class="bi bi-box-fill"></i><span class="ps-2">Сервер</span>
             </PanelNavElement>
             <PanelNavElement :active="$route.path.includes('keymanager')"  v-if="this.remote.checkAccess('apiKeyList')" :event="() => { $router.push({name: 'keyManager', params: {id: $route.params.id } }) }">
                 <i class="bi bi-key-fill"></i><span class="ps-2">Менеджер Ключей</span>
