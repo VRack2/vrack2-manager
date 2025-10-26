@@ -1,6 +1,14 @@
 <template>
     <div class="card mt-3">
-        <div class="card-body">
+        <div class="card-body" v-if="errorShow">
+            <h2><span class="text-primary-emphasis">{{ acts[0] }}</span>.<span class="text-info">{{ acts[1] }}</span></h2>
+        </div>
+        <div v-if="errorShow">
+            <div class="card-body"><h4>Ошибка получения информации об устройстве</h4></div>
+            <ServiceError :error="errorShow"></ServiceError>
+        </div>
+
+        <div class="card-body" v-if="!errorShow">
             <h2><span class="text-primary-emphasis">{{ acts[0] }}</span>.<span class="text-info">{{ acts[1] }}</span></h2>
             <p v-if="info.description" v-html="markdown.toHTML(info.description)" ></p>
             <template v-if="info.inputs && Object.keys(info.inputs).length"><hr>
@@ -33,36 +41,40 @@ import PortWidget from './info/PortWidget.vue';
 import MetricWidget from './info/MetricWidget.vue';
 import ActionWidget from './info/ActionWidget.vue';
 import OptionWidget from './info/OptionWidget.vue';
+import ServiceError from '@/components/ServiceError.vue';
+  
 import Utility from '@/classes/Utility';
 import { markdown } from 'markdown';
 
 export default {
     name: 'DeviceInfoWidget',
     props: ['device'],
-    components: {PortWidget, MetricWidget, ActionWidget, OptionWidget},
+    components: {PortWidget, MetricWidget, ActionWidget, OptionWidget, ServiceError},
+
     mounted() {
         this.getDeviceInfo()
     },
-    watch: {
-        'structure': function () {
-            this.getDeviceInfo()
-        }
-    },
+
     setup() {
         const remote = inject('remote')
         const info = ref(false)
         const acts = ref([])
-        return { remote, info, Utility, markdown, acts }
+        const errorShow = ref(false)
+        return { remote, info, Utility, markdown, acts, errorShow }
     },
 
     methods: {
         async getDeviceInfo() {
             if (!this.device) return
             this.acts = this.device.type.split('.')
-            this.info = await this.remote.command('vendorDeviceInfo', {
-                vendor: this.acts[0],
-                device: this.acts[1]
-            })
+            try {
+                this.info = await this.remote.command('vendorDeviceInfo', {
+                    vendor: this.acts[0],
+                    device: this.acts[1]
+                })
+            }catch (error){
+                this.errorShow = error
+            }
         }
     }
 }
