@@ -12,7 +12,7 @@
     </div>
     <div class="card-body" v-if="exp">
       <h4 v-if="command.description">Описание</h4>
-      <p v-if="command.description" v-html="markdown.toHTML(command.description)"></p>
+      <p v-if="command.description" v-html="Marked.parse(command.description)"></p>
       <h4 class="mt-4" v-if="command.rules && Object.keys(command.rules).length">Параметры запроса</h4>
       <div class="ms-4" v-for="(rule, index) in command.rules" :key="command.command + index">
         <b>{{ index }}</b> - <ActionStructView :rule="rule"></ActionStructView>
@@ -28,9 +28,8 @@
   </div>
 </template>
 <script>
-import { markdown } from 'markdown';
 import LevelBadge from './LevelBadge.vue';
-import { ref } from 'vue';
+import { inject, ref } from 'vue';
 // import RuleExampleWidget from '@/components/RuleExampleWidget.vue';
 import { Utility } from '@/classes/Utility';
 
@@ -44,7 +43,8 @@ export default {
     const exp = ref(false)
     const retE = ref({})
     const actE = ref({})
-    return { markdown, exp, retE, actE }
+    const Marked = inject('Marked')
+    return { exp, retE, actE, Marked }
   },
 
   watch: {

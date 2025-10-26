@@ -5,7 +5,7 @@
   <div class='toggle-console-button btn btn-sm btn-dark border border-light-subtle' @click='showConsole = !showConsole'>
     <i v-if="!showConsole" class="bi bi-layout-split"></i>
     <i v-if="showConsole" class="bi bi-layout-text-sidebar-reverse"></i>
-    
+
   </div>
   <div class="console-div rounded-bottom" v-show="showConsole">
     <ConsoleView></ConsoleView>
@@ -14,9 +14,10 @@
     <map-modal-view v-if="showMap" :structure="mapSettings.structure" :actions="mapSettings.actions"></map-modal-view>
     <div class="col-3 wwsw bg-body-tertiary p-0">
       <!-- LEFT PANEL -->
-       <SideNavigationWidget v-if="ready"></SideNavigationWidget>
-       <hr class="m-2">
-      <services-widget :services="services" :servicesTree="servicesTree" :servicesReload="serviceListUpdate"></services-widget>
+      <SideNavigationWidget v-if="ready"></SideNavigationWidget>
+      <hr class="m-2">
+      <services-widget :services="services" :servicesTree="servicesTree"
+        :servicesReload="serviceListUpdate"></services-widget>
     </div>
     <div class="col overy p-0 d-flex" style="height: 100%">
       <router-view v-if="ready" />
@@ -34,6 +35,10 @@ import SideNavigationWidget from "./manager/SideNavigationWidget.vue";
 import { Subscribes } from "@/classes/Subscribes"
 import { ConsoleWidgets } from "@/classes/ConsoleWidgets"
 import ConsoleView from "@/views/manager/ConsoleView.vue"
+
+import { Marked } from 'marked';
+import { markedHighlight } from "marked-highlight";
+import hljs from 'highlight.js';
 
 
 export default {
@@ -72,7 +77,7 @@ export default {
   },
 
   beforeUnmount() {
-        window.removeEventListener('keypress', this.onKeyPress);
+    window.removeEventListener('keypress', this.onKeyPress);
   },
 
   setup: function () {
@@ -124,6 +129,17 @@ export default {
 
     Subscribes.setRemote(remote)
 
+    const marked = new Marked(
+      markedHighlight({
+        emptyLangClass: 'hljs',
+        langPrefix: 'hljs language-',
+        highlight(code, lang) {
+          const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+          return hljs.highlight(code, { language }).value;
+        }
+      })
+    );
+
     // Settings
     const settings = inject("settings");
 
@@ -136,29 +152,31 @@ export default {
     provide('setMap', setMap)
     provide('Subscribes', SubscribesRef)
     provide('ConsoleWidgets', ConsoleWidgetsRef)
+    provide('Marked', marked)
+
     
-    return { 
+    return {
       settings,
-      ready, 
-      remote, 
-      connection, 
-      services, 
-      service, 
-      message, 
-      showMessage, 
-      servicesTree, 
-      setMessage, 
-      showMap, 
-      setMap, 
-      mapSettings, 
-      showConsole, 
+      ready,
+      remote,
+      connection,
+      services,
+      service,
+      message,
+      showMessage,
+      servicesTree,
+      setMessage,
+      showMap,
+      setMap,
+      mapSettings,
+      showConsole,
       Subscribes: SubscribesRef,
       ConsoleWidgets: ConsoleWidgetsRef
     };
   },
 
   methods: {
-    onKeyPress(key){
+    onKeyPress(key) {
       if (key.shiftKey === true && key.charCode === 126) {
         this.showConsole = !this.showConsole;
       }
@@ -227,14 +245,14 @@ export default {
       }
     },
 
-    getConnections(id){
+    getConnections(id) {
       for (const connection of this.settings.connections) {
         if (connection.id !== id) continue
         return connection
       }
       return false
     },
-   
+
 
     hideMessage() {
       this.showMessage = false
@@ -290,8 +308,8 @@ export default {
   height: 100%;
 }
 
-.toggle-console-button{
-  position:fixed;
+.toggle-console-button {
+  position: fixed;
   top: 0%;
   right: 1%;
   z-index: 1000;
@@ -301,10 +319,10 @@ export default {
   z-index: 900;
   position: fixed;
   /* top:10%; */
-  left:1%;
+  left: 1%;
   width: 98%;
   height: 95%;
-  overflow:auto;
-  background-color:#1b1b1b;
+  overflow: auto;
+  background-color: #1b1b1b;
 }
 </style>

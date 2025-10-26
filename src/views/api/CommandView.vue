@@ -5,7 +5,7 @@
   </template>
   <script>
   import { inject, ref } from 'vue';
-  import { markdown } from 'markdown';
+
 import CommandWidget from './CommandWidget.vue';
   
 
@@ -15,7 +15,7 @@ import CommandWidget from './CommandWidget.vue';
     setup() {
       const remote = inject('remote')
       const command = ref(false)
-      return { remote, command, markdown }
+      return { remote, command }
     },
 
     beforeRouteUpdate(to, from,next){

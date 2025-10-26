@@ -10,7 +10,7 @@
 
         <div class="card-body" v-if="!errorShow">
             <h2><span class="text-primary-emphasis">{{ acts[0] }}</span>.<span class="text-info">{{ acts[1] }}</span></h2>
-            <p v-if="info.description" v-html="markdown.toHTML(info.description)" ></p>
+            <div v-if="info.description" v-html="Marked.parse(info.description)" ></div>
             <template v-if="info.inputs && Object.keys(info.inputs).length"><hr>
                 <h4 class="mt-4"><i class="ms-2 me-2 bi bi-box-arrow-in-right"></i> Входы</h4>
                 <div class="ms-3"><PortWidget v-for="(port, idx) in info.inputs" :key="'itp' + idx" :name="idx" :port="port"></PortWidget></div>
@@ -44,7 +44,6 @@ import OptionWidget from './info/OptionWidget.vue';
 import ServiceError from '@/components/ServiceError.vue';
   
 import Utility from '@/classes/Utility';
-import { markdown } from 'markdown';
 
 export default {
     name: 'DeviceInfoWidget',
@@ -60,7 +59,18 @@ export default {
         const info = ref(false)
         const acts = ref([])
         const errorShow = ref(false)
-        return { remote, info, Utility, markdown, acts, errorShow }
+        const Marked = inject('Marked')
+        // const marked = new Marked(
+        // markedHighlight({
+        //     emptyLangClass: 'hljs',
+        //     langPrefix: 'hljs language-',
+        //     highlight(code, lang) {
+        //     const language = hljs.getLanguage(lang) ? lang : 'plaintext';
+        //     return hljs.highlight(code, { language }).value;
+        //     }
+        // }))
+
+        return { remote, info, Utility, acts, errorShow, Marked }
     },
 
     methods: {
@@ -79,3 +89,7 @@ export default {
     }
 }
 </script>
+
+<style>
+
+</style>
