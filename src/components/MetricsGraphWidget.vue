@@ -136,6 +136,17 @@ export default {
     */
     async getMetricData(service, device, metric, index, id) {
       if (this.isUpdaing(id)) return;
+
+      if (this.control.activeVAlign === 1){
+          this.option.yAxis.min = 0
+          this.option.yAxis.max = undefined
+      }
+
+      if (this.control.activeVAlign === 2){
+        this.option.yAxis.min = 'dataMin'
+        this.option.yAxis.max = 'dataMax'
+      }
+
       let result
       try {
         this.toUpdating(id)

@@ -109,6 +109,7 @@ export class Metrics {
 export class MetricsControl{
     activePeriod = 'now-6h:now'
     activeTimer = 15000
+    activeVAlign = 1
     size = 'middle'
     sizeList = { small: 'chart-sm', middle: 'chart-md', large: 'chart-lg' }
 
@@ -136,6 +137,13 @@ export class MetricsControl{
         300000: '5 мин'
     }
 
+    vAlign = {
+        1: 'от 0',
+        2: 'Min-Max',
+    }
+
+
+
     index = []
 
     timer = false
@@ -161,6 +169,11 @@ export class MetricsControl{
     setTimerPreset(preset){
         this.activeTimer = parseInt(preset)
         this.updateTimer()
+        this.updateIndex()
+    }
+
+    setVAlign(preset){
+        this.activeVAlign = parseInt(preset)
         this.updateIndex()
     }
 

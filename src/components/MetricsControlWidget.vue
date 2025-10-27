@@ -25,6 +25,16 @@
                     </option>
                 </select>
             </div>
+
+            <div class="d-flex align-items-center ms-4">
+                <label class="form-label m-0 me-3"><i class="bi bi-arrows-vertical"></i></label>
+                <select class="form-select" v-model="model.activeVAlign" @change="updateVAlign()">
+                    <option v-for="(val, ds) of control.vAlign" :key="'period-' + val" :value="ds">
+                        {{ val }}
+                    </option>
+                </select>
+            </div>
+
         </div>
     </div>
 </template>
@@ -39,7 +49,8 @@ export default {
       const model = ref({
         activePeriod: 'now-6h:now',
         activeTimer: 15000,
-        activeSize: 'middle'
+        activeSize: 'middle',
+        activeVAlign: 1
       })
       return { model }
    },
@@ -61,6 +72,9 @@ export default {
     },
     updateSize(){
       this.control.setSize(this.model.activeSize)
+    },
+    updateVAlign(){
+      this.control.setVAlign(this.model.activeVAlign)
     }
    }
 }
