@@ -27,12 +27,16 @@
             </div>
 
             <div class="d-flex align-items-center ms-4">
-                <label class="form-label m-0 me-3"><i class="bi bi-arrows-vertical"></i></label>
+                <div><button class="btn ms-2 btn-dark" @click="toggleVAlign()">
+                    <i v-if="model.activeVAlign === 1" class="bi bi-align-middle"></i>
+                    <i v-if="model.activeVAlign === 2" class="bi bi-align-bottom"></i>
+                </button></div>
+                <!-- <label class="form-label m-0 me-3"><i class="bi bi-arrows-vertical"></i></label>
                 <select class="form-select" v-model="model.activeVAlign" @change="updateVAlign()">
                     <option v-for="(val, ds) of control.vAlign" :key="'period-' + val" :value="ds">
                         {{ val }}
                     </option>
-                </select>
+                </select> -->
             </div>
 
         </div>
@@ -58,6 +62,7 @@ export default {
     this.model.activePeriod = this.control.activePeriod
     this.model.activeTimer = this.control.activeTimer
     this.model.activeSize = this.control.size
+    this.model.activeVAlign = this.control.activeVAlign
    },
 
    methods: {
@@ -73,8 +78,14 @@ export default {
     updateSize(){
       this.control.setSize(this.model.activeSize)
     },
-    updateVAlign(){
-      this.control.setVAlign(this.model.activeVAlign)
+    toggleVAlign(){
+        if (this.model.activeVAlign === 1) { 
+            this.control.setVAlign(2)
+            this.model.activeVAlign = 2
+        } else if (this.model.activeVAlign === 2) {
+            this.control.setVAlign(1)
+            this.model.activeVAlign = 1
+        }
     }
    }
 }
