@@ -40,6 +40,7 @@
 
 import { inject, ref } from 'vue';
 import ServiceError from '@/components/ServiceError.vue';
+import { Utility } from '@/classes/Utility';
 
 export default {
   name: 'ManagerIndexView',
@@ -95,6 +96,7 @@ export default {
           port: this.port.port,
           data
         })
+        this.reqResult = Utility.escapeHtml(this.reqResult)
         this.reqError = false
         this.successMessage()
       } catch (err) {

@@ -36,6 +36,7 @@
 import LoaderProgress from '@/components/LoaderProgress.vue';
 import Convert from 'ansi-to-html'
 import moment from 'moment';
+import { Utility } from '@/classes/Utility';
 
 moment.locale('ru')
 
@@ -89,6 +90,8 @@ moment.locale('ru')
         if (!this.capture && this.repeat) this.sendRequest()
       },
     
+ 
+
       async sendRequest() {
         if (this.capture) return
         this.capture = true
@@ -99,7 +102,7 @@ moment.locale('ru')
             port: this.port.port,
             timeout: 4000
           })
-          this.reqResult = this.Converter.toHtml(res)
+          this.reqResult = this.Converter.toHtml(Utility.escapeHtml(res))
           this.show = true
           this.timestamp = Date.now()
           this.reqError = false
