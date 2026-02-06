@@ -24,9 +24,7 @@
       </div>
       <div class="rounded border p-2">
         <h5 class="card-title m-0" style="cursor: pointer;" @click="showSend = !showSend">Данные для отправки</h5>
-        <p class="card-text" v-if="showSend">
-        <pre class="m-0">{{ form }}</pre>
-        </p>
+        <p class="card-text" v-if="showSend"><pre class="m-0">{{ form }}</pre></p>
       </div>
       <div v-if="reqResult" class="rounded border p-2">
         <h5>Результат выполнения</h5>
