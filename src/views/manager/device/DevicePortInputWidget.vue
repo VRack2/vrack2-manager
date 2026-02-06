@@ -96,7 +96,9 @@ export default {
           port: this.port.port,
           data
         })
-        this.reqResult = Utility.escapeHtml(this.reqResult)
+        if (typeof this.reqResult === "string"){
+          this.reqResult = Utility.escapeHtml(this.reqResult)
+        }
         this.reqError = false
         this.successMessage()
       } catch (err) {
