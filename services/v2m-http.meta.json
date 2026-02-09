@@ -1,0 +1,7 @@
+{
+    "name": "VRack2 Manager",
+    "group": "vrack2",
+    "autoStart": true,
+    "autoReload": true,
+    "description": "Http сервер статики для VRack2 Manager"
+}

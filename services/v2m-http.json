@@ -1,0 +1,13 @@
+{
+    "devices": [
+	{
+		"id": "SS",
+		"type": "vrack2-net.HTTPStaticServer",
+		"options": {
+		    "port": 8088,
+			"directory": "/opt/vrack2-manager/dist",
+			"index": "index.html"
+		}
+	}
+    ]
+}
