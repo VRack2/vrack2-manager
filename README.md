@@ -89,7 +89,7 @@ npm install
 ### Копируем файлы сервиса
 
 ```
-cp -a /opt/vrack2-manager/services/. /opt/vrack2/services/
+cp -a /opt/vrack2-manager/services/. /opt/vrack2-service/services
 ```
 
 Файлы сервиса настроены на автозапуск, но он может не запуститься или выдать ошибку если порт будет занят. 
