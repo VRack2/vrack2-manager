@@ -1,8 +1,8 @@
 <template>
-
     <i 
         :class="{
-            'bi-gear-fill': (!errors),
+            'bi-box-fill': (isolated),
+            'bi-gear-fill': (!isolated && !errors),
             'bi-exclamation-octagon-fill': (errors),
             'text-secondary': (!errors && !run),
             'text-success': (!errors && run),
@@ -16,6 +16,6 @@
  
  export default {
     name: 'PanelHeader',
-    props: ['errors', 'run'],
+    props: ['errors', 'run', 'isolated'],
  }
  </script>

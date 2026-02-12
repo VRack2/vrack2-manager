@@ -5,7 +5,6 @@
       <div><i class="bi bi-hdd-rack-fill"></i> Сервисы</div><button type="button" @click="servicesReload()" class="btn btn-dark btn-sm"><i class="bi bi-arrow-repeat"></i></button>
     </div>
   </div>
-
   <PanelNav>
     <template v-for="group in servicesTree" v-bind:key="group.name">
       <PanelNavGroup>{{ group.group }}</PanelNavGroup>
@@ -14,7 +13,7 @@
           :event="() => $router.push({ name: 'serviceControl', params: { service: service.id, id: $route.params.id } })"
           :active="($route.params.service === service.id)">
           <span style="display: block;" class="">
-            <ServiceGear :errors="services[service.id].errors" :run="services[service.id].run"></ServiceGear>
+            <ServiceGear :errors="services[service.id].errors" :isolated="services[service.id].isolated" :run="services[service.id].run"></ServiceGear>
             {{ service.name }}
           </span>
           <small style="color: #AAA"><b>{{ service.id }}</b></small>

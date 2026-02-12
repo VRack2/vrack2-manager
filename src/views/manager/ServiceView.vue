@@ -1,7 +1,7 @@
 <template>
   <div  class="manager-container">
     <div class="service-middle-menu">
-      <PanelHeader>{{ service.name }}<small style="display: block;" class="ms-3">ID: {{ service.id }}</small></PanelHeader>
+      <PanelHeader>{{ service.name }}<div class="d-flex ms-2"><div v-if="!service.isolated">{{ service.id }}</div><div class="text-info " v-if="service.isolated">Изолирован</div></div></PanelHeader>
       <PanelNav>
         <PanelNavGroup>Управление</PanelNavGroup>
         <ControlWidget></ControlWidget>
