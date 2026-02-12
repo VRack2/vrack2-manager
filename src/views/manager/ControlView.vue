@@ -89,7 +89,7 @@ export default {
 
   mounted(){
     if (this.service && this.service.errors) { this.updateServiceErrors() }
-    this.memory.addMetric(this.service.id , 'Service', 'memory.rss')
+    if (this.service.isolated) this.memory.addMetric(this.service.id , 'Service', 'memory.rss')
     this.memory.addMetric(this.service.id , 'Service', 'memory.heaptotal')
     this.memory.addMetric(this.service.id , 'Service', 'memory.heapused')
     this.memory.addMetric(this.service.id , 'Service', 'memory.external')
